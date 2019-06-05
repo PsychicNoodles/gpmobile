@@ -7,6 +7,7 @@
   "license": "GPL-3.0-or-later",
   "devDependencies": {
     "css-loader": "^2.1.1",
+    "eslint": "^5.16.0",
     "jsonschema": "^1.2.4",
     "style-loader": "^0.23.1",
     "vue": "^2.6.10",
