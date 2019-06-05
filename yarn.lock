@@ -1535,6 +1535,11 @@ json5@^1.0.1:
   dependencies:
     minimist "^1.2.0"
 
+jsonschema@^1.2.4:
+  version "1.2.4"
+  resolved "https://registry.yarnpkg.com/jsonschema/-/jsonschema-1.2.4.tgz#a46bac5d3506a254465bc548876e267c6d0d6464"
+  integrity sha512-lz1nOH69GbsVHeVgEdvyavc/33oymY1AZwtePMiMj4HZPMbP5OIKK3zT9INMWjwua/V4Z4yq7wSlBbSG+g4AEw==
+
 kind-of@^3.0.2, kind-of@^3.0.3, kind-of@^3.2.0:
   version "3.2.2"
   resolved "https://registry.yarnpkg.com/kind-of/-/kind-of-3.2.2.tgz#31ea21a734bab9bbb0f32466d893aea51e4a3c64"
@@ -2943,6 +2948,11 @@ vue-property-decorator@^8.1.1:
   integrity sha512-K+PUT17ZEMWyhrKZnl4Fc9qMyFpMcjVbZJBwx4BpA8BXfaspaTeFdoHuk1aywC/+4G86sxIr/5n4IQUQLecSWw==
   dependencies:
     vue-class-component "^7.0.1"
+
+vue-router@^3.0.6:
+  version "3.0.6"
+  resolved "https://registry.yarnpkg.com/vue-router/-/vue-router-3.0.6.tgz#2e4f0f9cbb0b96d0205ab2690cfe588935136ac3"
+  integrity sha512-Ox0ciFLswtSGRTHYhGvx2L44sVbTPNS+uD2kRISuo8B39Y79rOo0Kw0hzupTmiVtftQYCZl87mwldhh2L9Aquw==
 
 vue-style-loader@^4.1.0:
   version "4.1.2"
