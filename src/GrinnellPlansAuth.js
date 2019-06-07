@@ -42,15 +42,12 @@ class GrinnellPlansAuth {
   }
 
   login (username = this.username, password = this.password) {
-    fetch(API_URL + '/login', {
+    return fetch(API_URL + '/login', {
       method: 'POST',
       body: JSON.stringify({ username: username, password: password }),
       credentials: 'include'
-    }).then(res => {
-      let json = res.json()
-      console.log(json)
-      console.log(validator.validate(res, autoFingerResponseSchema))
-      return json
+    }).then(res => res.json()).then(json => {
+      validator.validate(json, autoFingerResponseSchema, { throwError: true })
     })
   }
 }

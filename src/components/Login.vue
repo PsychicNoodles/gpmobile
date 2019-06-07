@@ -39,10 +39,11 @@ export default {
   },
   methods: {
     auth() {
-      let res = gpAuth.login(this.$data.login.username, this.$data.login.password)
-      if (res) {
-        alert("nice")
-      }
+      gpAuth.login(this.$data.login.username, this.$data.login.password).then((res) => {
+        alert(JSON.stringify(res))
+      }, (err) => {
+        alert('err: ' + err)
+      })
     }
   }
 }
