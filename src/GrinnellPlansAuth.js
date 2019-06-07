@@ -1,6 +1,6 @@
-import { Validator } from "jsonschema"
+import { Validator } from 'jsonschema'
 
-const API_URL = "https://grinnellplans.com/api/1/index.php"
+const API_URL = 'https://grinnellplans.com/api/1/index.php'
 
 let autoFingerListSchema = {
   'id': '/AutoFingerList',
@@ -35,25 +35,24 @@ let validator = new Validator()
 validator.addSchema(autoFingerListSchema, '/AutoFingerList')
 
 class GrinnellPlansAuth {
-  constructor(plansSession, username, password) {
+  constructor (plansSession, username, password) {
     this.sessionId = plansSession
     this.username = username
     this.password = password
   }
 
-  login(username = this.username, password = this.password) {
-    fetch(API_URL + "?task=login", {
+  login (username = this.username, password = this.password) {
+    fetch(API_URL + '?task=login', {
       method: 'POST',
       body: JSON.stringify({ username: username, password: password }),
       credentials: 'include'
     }).then(res => {
-      json = res.json()
+      let json = res.json()
       console.log(json)
       console.log(validator.validate(res, autoFingerResponseSchema))
       return json
     })
   }
 }
-
 
 export const gpAuth = new GrinnellPlansAuth(localStorage.plansSession, localStorage.username, localStorage.password)
