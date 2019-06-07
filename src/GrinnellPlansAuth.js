@@ -1,6 +1,6 @@
 import { Validator } from 'jsonschema'
 
-const API_URL = 'https://grinnellplans.com/api/1/index.php'
+const API_URL = 'http://localhost:3000/api'
 
 let autoFingerListSchema = {
   'id': '/AutoFingerList',
@@ -42,7 +42,7 @@ class GrinnellPlansAuth {
   }
 
   login (username = this.username, password = this.password) {
-    fetch(API_URL + '?task=login', {
+    fetch(API_URL + '/login', {
       method: 'POST',
       body: JSON.stringify({ username: username, password: password }),
       credentials: 'include'

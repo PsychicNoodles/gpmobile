@@ -2,11 +2,12 @@ const express = require('express')
 const cookieParser = require('cookie-parser')
 const cors = require('cors')
 
-let app = express()
+let server = express()
 
-app.use(express.json())
-app.use(cookieParser())
-app.use(cors())
+server.use(express.json())
+server.use(cookieParser())
+server.use(cors())
+server.use(express.static('public'))
 
 let afl = [
   { 'level': '1', 'usernames': ['birnbaum'] },
@@ -58,7 +59,13 @@ function failure (msg) {
   return { success: false, message: msg }
 }
 
-app.use((req, res, next) => {
+let api = express.Router()
+
+server.get('/', (req, res) => {
+  res.sendFile('index.html', { root: '.' })
+})
+
+api.use((req, res, next) => {
   if ('PHPSESSID' in req.cookies || req.path === '/login') {
     next()
   } else {
@@ -66,7 +73,7 @@ app.use((req, res, next) => {
   }
 })
 
-app.post('/login', (req, res) => {
+api.post('/login', (req, res) => {
   console.log('Login with ' + JSON.stringify(req.body))
   if ('username' in req.body && 'password' in req.body) {
     res.cookie('PHPSESSID', req.body.username)
@@ -76,12 +83,12 @@ app.post('/login', (req, res) => {
   }
 })
 
-app.get('/autofingerlist', (req, res) => {
+api.get('/autofingerlist', (req, res) => {
   console.log('Autofingerlist for ' + req.cookies['PHPSESSID'])
   res.json(successful(autoFingerList(req.header('PHPSESSID'))))
 })
 
-app.get('/read/:username', (req, res) => {
+api.get('/read/:username', (req, res) => {
   console.log('Read ' + req.params.username)
   if (req.params.username in plandata) {
     res.json(successful(plandata[req.params.username]))
@@ -90,4 +97,6 @@ app.get('/read/:username', (req, res) => {
   }
 })
 
-app.listen(3000, () => console.log('Mock db server listening on port 3000'))
+server.use('/api', api)
+
+server.listen(3000, () => console.log('Mock db server listening on port 3000'))
