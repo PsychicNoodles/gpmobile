@@ -67,7 +67,7 @@ app.use((req, res, next) => {
 })
 
 app.post('/login', (req, res) => {
-  console.log('Login with ' + req.body)
+  console.log('Login with ' + JSON.stringify(req.body))
   if ('username' in req.body && 'password' in req.body) {
     res.cookie('PHPSESSID', req.body.username)
     res.json(successful(autoFingerList(req.body.username)))
